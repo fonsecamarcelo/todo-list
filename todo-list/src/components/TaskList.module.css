@@ -1,0 +1,18 @@
+.taskMain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.taskCard {
+    min-height: 110px;
+    width: 20%;
+    background-color: #ece7e7;
+}
+
+.taskCard p {
+    margin-bottom: 10px;
+}
