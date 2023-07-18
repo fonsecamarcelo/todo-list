@@ -4,11 +4,12 @@ import {ITask} from "../interfaces/Task";
 import styles from './TaskList.module.css'
 
 type Props = {
-    taskList: ITask[]
+    taskList: ITask[];
+    handleDelete(id: number): void;
 }
 
 const TaskList = (props: Props) => {
-    const { taskList } = props;
+    const { taskList, handleDelete } = props;
 
     return (
         <>
@@ -21,14 +22,15 @@ const TaskList = (props: Props) => {
                                 <p>Dificuldade: {task.difficulty}</p>
                             </div>
                             <div>
-                                <i className='bi bi-pencil'></i>
-                                <i className='bi bi-trash'></i>
+                                <i className={`bi bi-pencil ${styles.icons}`}></i>
+                                <i className={`bi bi-trash ${styles.icons}`} onClick={() => {handleDelete(task.id)
+                                }}></i>
                             </div>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p>Não tem tarefas cadastradas</p>
+                <p>Não tem tarefas cadastradas :(</p>
             )}
         </>
     )
