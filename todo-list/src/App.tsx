@@ -28,7 +28,7 @@ function App() {
   return (
     <div >
         <Modal >
-            <TaskForm btnText='Criar tarefa' setTaskList={setTaskList} taskList={taskList}/>
+            <TaskForm btnText='Editar tarefa' taskList={taskList}/>
         </Modal>
         <Header />
         <main className='main'>
