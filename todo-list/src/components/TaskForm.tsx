@@ -6,7 +6,7 @@ import styles from './TaskForm.module.css'
 
 type Props = {
     btnText: string;
-    taskList: ITask[]
+    taskList: ITask[];
     setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>
 }
 

@@ -2,11 +2,15 @@ import React, {useState} from 'react';
 import Header from "./components/Header";
 import Foooter from "./components/Foooter";
 
-import './App.css'
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import Modal from "./components/Modal";
 
 import {ITask} from "./interfaces/Task";
+
+import './App.css'
+import styles from './components/Modal.module.css'
+import taskForm from "./components/TaskForm";
 
 function App() {
     const [taskList, setTaskList] = useState<ITask[]>([]);
@@ -23,6 +27,9 @@ function App() {
 
   return (
     <div >
+        <Modal >
+            <TaskForm btnText='Criar tarefa' setTaskList={setTaskList} taskList={taskList}/>
+        </Modal>
         <Header />
         <main className='main'>
             <div>
