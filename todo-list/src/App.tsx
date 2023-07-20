@@ -9,8 +9,6 @@ import Modal from "./components/Modal";
 import {ITask} from "./interfaces/Task";
 
 import './App.css'
-import styles from './components/Modal.module.css'
-import taskForm from "./components/TaskForm";
 
 function App() {
     const [taskList, setTaskList] = useState<ITask[]>([]);
