@@ -29,8 +29,6 @@ const TaskForm = (props: Props) => {
 
     }, [task])
 
-    console.log(difficulty)
-
     const addTaskHandle = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
