@@ -6,10 +6,11 @@ import styles from './TaskList.module.css'
 type Props = {
     taskList: ITask[];
     handleDelete(id: number): void;
+    handleEdit(task: ITask): void;
 }
 
 const TaskList = (props: Props) => {
-    const { taskList, handleDelete } = props;
+    const { taskList, handleDelete, handleEdit } = props;
 
     return (
         <>
@@ -22,7 +23,7 @@ const TaskList = (props: Props) => {
                                 <p>Dificuldade: {task.difficulty}</p>
                             </div>
                             <div>
-                                <i className={`bi bi-pencil ${styles.icons}`}></i>
+                                <i className={`bi bi-pencil ${styles.icons}`} onClick={() => {handleEdit(task)}}></i>
                                 <i className={`bi bi-trash ${styles.icons}`} onClick={() => {handleDelete(task.id)
                                 }}></i>
                             </div>

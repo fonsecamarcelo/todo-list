@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, FormEvent, useState} from "react";
+import React, {ChangeEvent, ChangeEventHandler, FormEvent, useEffect, useState} from "react";
 
 import {ITask} from "../interfaces/Task";
 
@@ -8,34 +8,52 @@ type Props = {
     btnText: string;
     taskList: ITask[];
     setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>
+    task?: ITask | null;
+    handleUpdate?(id: number, title: string, difficulty: number): void;
 }
 
 const TaskForm = (props: Props) => {
-    const {btnText, taskList, setTaskList} = props;
+    const { btnText, taskList, setTaskList, task, handleUpdate } = props;
 
     const [id, setId] = useState<number>(0);
     const [title, setTitle] = useState<string>('');
-    const [difficulty, setDiffuculty] = useState<number | undefined>(0);
+    const [difficulty, setDiffuculty] = useState<number | 0>(0);
+
+    useEffect(() => {
+
+        if (task) {
+            setId(task.id)
+            setTitle(task.title)
+            setDiffuculty(task.difficulty)
+        }
+
+    }, [task])
+
+    console.log(difficulty)
 
     const addTaskHandle = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const id = Math.floor(Math.random() * 1000)
+        if (handleUpdate) {
+            handleUpdate( id, title, difficulty )
 
-        const newTask: ITask = {id, title, difficulty: difficulty || 0}
+        } else {
+            const id = Math.floor(Math.random() * 1000)
 
-        setTaskList!([...taskList, newTask])
+            const newTask: ITask = {id, title, difficulty: difficulty || 0}
 
-        setTitle('')
-        setDiffuculty(0)
-console.log(setTaskList)
+            setTaskList!([...taskList, newTask])
+
+            setTitle('')
+            setDiffuculty(0)
+        }
     }
 
     const handleChange: ChangeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === 'title'){
             setTitle(e.target.value)
         } else {
-            setDiffuculty(e.target.value ? parseInt(e.target.value) : undefined)
+            setDiffuculty(e.target.value ? parseInt(e.target.value) : 0)
         }
     }
 
